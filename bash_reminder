@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python3 /Users/swaymun/Documents/code/randominder_py/pyreminder.py

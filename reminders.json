@@ -1,0 +1,19 @@
+{
+    "tasks": [
+        {
+            "name": "Stridex & Face Cream",
+            "time": ["12:00", "12:30"],
+            "days": "everyday"
+        },
+        {
+            "name": "Workout",
+            "time": ["22:35", "23:25"],
+            "days": "everyday"
+        },
+        {
+            "name": "Building BLocks Music",
+            "time": ["15:00", "16:00"],
+            "days": "weekends"
+        }
+    ]
+}
