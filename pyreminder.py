@@ -23,8 +23,7 @@ def convert_time(task_time):
 def create_reminder(task, task_date): 
     task_time = convert_time(get_random_time(task['time']))
 
-    dirname = os.path.abspath(os.getcwd())
-    remind_path = os.path.join(dirname, "remind")
+    remind_path = os.path.abspath("remind") 
     full_remind_path = remind_path + " '{}' {} {}"
     rmd_cmd = full_remind_path.format(task["name"], task_time, task_date)
     

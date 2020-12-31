@@ -14,6 +14,16 @@
             "name": "Building BLocks Music",
             "time": ["15:00", "16:00"],
             "days": "weekends"
+        },
+        {
+            "name": "Take Melatonin Gummy and Multivitamin",
+            "time": ["00:05", "00:35"],
+            "days": "everyday"
+        },
+        {
+            "name": "Building Blocks Music",
+            "time": ["10:30", "11:30"],
+            "days": "weekdays"
         }
     ]
 }
