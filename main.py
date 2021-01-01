@@ -1,15 +1,13 @@
-from pyreminder import create_reminders
-from json import load
 from constants import DAYS
+from reminders_io import open_json
+from pyreminder import create_reminders
 import datetime
 import os
+import argparse
 
-current_date = datetime.date.strftime(datetime.datetime.now(), "%m/%d/%Y")
-_, _, current_day = datetime.date.today().isocalendar()
-current_day = DAYS[current_day - 1]
 
-filename = os.path.abspath("reminders.json") 
-with open(filename, 'r') as f:
-    reminders = load(f)
-print(reminders)
-create_reminders(reminders['tasks'], current_day)
+parser = argparse.ArgumentParser()
+parser.add_argument("--file", help="Choose reminders json file", required=True)
+args = parser.parse_args()
+
+create_reminders(open_json(args.file)['tasks'])
