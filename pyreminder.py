@@ -10,6 +10,8 @@ def get_current_day():
     _, _, current_day = datetime.date.today().isocalendar()
     return DAYS[current_day - 1]
     
+CURRENT_DAY = get_current_day()
+CURRENT_DATE = get_current_date()
 
 def get_random_time(time_range):
     start, end = time_range
@@ -28,7 +30,7 @@ def get_random_time(time_range):
 def convert_time(task_time):
     return datetime.datetime.strptime(task_time, "%H:%M").strftime("%I:%M%p")
 
-def create_reminder(task, task_date): 
+def _create_reminder(task, task_date): 
     task_time = convert_time(get_random_time(task['time']))
 
     remind_path = os.path.abspath("create_remind") 
@@ -36,12 +38,12 @@ def create_reminder(task, task_date):
     rmd_cmd = full_remind_path.format(task["name"], task_date, task_time)
     os.system(rmd_cmd)
 
-def create_reminders(tasks):
-    current_date = get_current_date()
-    current_day = get_current_day()
-    for task in tasks:
-        if "days" in task and current_day in DAYS_MAP[task["days"]]:
-            create_reminder(task, current_date)
-        if "date" in task:
-            create_reminder(task, task["date"])
+def create_reminder(task):
+    if task.get("days") and CURRENT_DAY in DAYS_MAP[task["days"]]:
+        _create_reminder(task, CURRENT_DATE)
+    if task.get("date"):
+        _create_reminder(task, task["date"])
 
+def create_reminders(tasks):
+    for task in tasks:
+        create_reminder(task)
