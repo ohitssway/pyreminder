@@ -1,6 +1,6 @@
 from .constants import DAYS
 from .reminders_io import open_json
-from .pyreminders_utils import create_reminder, create_reminders
+from .utils import create_reminder, create_reminders
 import datetime
 import os
 import argparse
