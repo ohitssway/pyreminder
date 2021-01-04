@@ -1,4 +1,4 @@
-from .pyr import PyReminders
+from .pr import PyReminders
 
 def run():
     PyReminders()

@@ -1,5 +1,5 @@
 __pycache__/
-bin/
+build/
 # Compiled python modules.
 *.pyc
 
@@ -8,4 +8,3 @@ bin/
 
 # Python egg metadata, regenerated from source files by setuptools.
 /*.egg-info
-static/my_reminders.json
