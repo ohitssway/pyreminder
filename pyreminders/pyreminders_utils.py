@@ -1,4 +1,5 @@
-from constants import DAYS, DAYS_MAP
+from .constants import DAYS, DAYS_MAP
+from .create_remind import new_reminder
 import os
 import datetime
 import random
@@ -32,11 +33,7 @@ def convert_time(task_time):
 
 def _create_reminder(task, task_date): 
     task_time = convert_time(get_random_time(task['time']))
-
-    remind_path = os.path.abspath("scripts/create_remind") 
-    full_remind_path = remind_path + " '{}' {} {}"
-    rmd_cmd = full_remind_path.format(task["name"], task_date, task_time)
-    os.system(rmd_cmd)
+    new_reminder(task['name'], task_date, task_time)
 
 def create_reminder(task):
     if task.get("days") and CURRENT_DAY in DAYS_MAP[task["days"]]:

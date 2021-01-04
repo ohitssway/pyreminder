@@ -1,6 +1,7 @@
-#!/usr/bin/env bash
+import os
 
-osascript - "$1" "$2" "$3"<<END
+NEW_REMINDER = '''
+osascript - %s %s %s<<END
 on run argv
 set stringedAll to date (item 2 of argv & " " & item 3 of argv)
 tell application "Reminders"
@@ -8,3 +9,7 @@ make new reminder with properties {name:item 1 of argv, due date:stringedAll}
 end tell
 end run
 END
+'''
+
+def new_reminder(name, date, time):
+    os.system(NEW_REMINDER % (name, date, time))
