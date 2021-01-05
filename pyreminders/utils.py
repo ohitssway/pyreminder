@@ -14,6 +14,12 @@ def get_current_day():
 CURRENT_DAY = get_current_day()
 CURRENT_DATE = get_current_date()
 
+def parse_time(time):
+    if len(time) == 1:
+        return time[0]
+    elif len(time) == 2:
+        return get_random_time(time)
+
 def get_random_time(time_range):
     start, end = time_range
     sh, sm = start.split(":")
@@ -32,14 +38,16 @@ def convert_time(task_time):
     return datetime.datetime.strptime(task_time, "%H:%M").strftime("%I:%M%p")
 
 def _create_reminder(task, task_date): 
-    task_time = convert_time(get_random_time(task['time']))
+    task_time = convert_time(parse_time(task['time']))
     new_reminder(task['name'], task_date, task_time)
 
 def create_reminder(task):
     if task.get("days") and CURRENT_DAY in DAYS_MAP[task["days"]]:
         _create_reminder(task, CURRENT_DATE)
-    if task.get("date"):
+    elif task.get("date"):
         _create_reminder(task, task["date"])
+    else:
+        _create_reminder(task, CURRENT_DATE)
 
 def create_reminders(tasks):
     for task in tasks:

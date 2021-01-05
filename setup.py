@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(name='pyreminders',
-      version='0.1',
+      version='0.1.1',
       description='Python library to create iCloud Reminders through CLI',
-      url='http://github.com/ohitssway/pyreminders',
+      url='http://github.com/ohitssway/pyreminder',
       author='Saimun Shahee',
       author_email='saimun.shahee@gmail.com',
       license='MIT',

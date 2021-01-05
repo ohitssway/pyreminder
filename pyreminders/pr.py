@@ -44,13 +44,11 @@ class PyReminders(object):
         )
         parser.add_argument("--name", help="Name of reminder",
                 required=True)
-        parser.add_argument("--time", help="Time of reminder", nargs=2,
+        parser.add_argument("--time", help="Time of reminder", nargs="+",
                 required=True)
         parser.add_argument("--days", help="Days to create reminder")
         parser.add_argument("--date", help="Date to create reminder")
         args = parser.parse_args(sys.argv[2:])
-        if not (args.days or args.date):
-            parser.error("Either days or days option required!")
         
         print("Running pyreminder new:")
         new_reminder_dict = vars(args)
