@@ -53,7 +53,8 @@ class PyReminders(object):
         print("Running pyreminder new:")
         new_reminder_dict = vars(args)
         for key in new_reminder_dict:
-            print("%s : %s" % (key, new_reminder_dict[key]))
+            if new_reminder_dict[key]:
+                print("%s : %s" % (key, new_reminder_dict[key]))
         create_reminder(new_reminder_dict)
         
 

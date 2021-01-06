@@ -42,8 +42,9 @@ def _create_reminder(task, task_date):
     new_reminder(task['name'], task_date, task_time)
 
 def create_reminder(task):
-    if task.get("days") and CURRENT_DAY in DAYS_MAP[task["days"]]:
-        _create_reminder(task, CURRENT_DATE)
+    if task.get("days"):
+        if CURRENT_DAY in DAYS_MAP[task["days"]]:
+            _create_reminder(task, CURRENT_DATE)
     elif task.get("date"):
         _create_reminder(task, task["date"])
     else:
