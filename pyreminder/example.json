@@ -9,6 +9,13 @@
             "name": "Custom Date Test Task",
             "time": ["10:30", "11:30"],
             "date": "01/10/2021"
+        },
+        {
+            "name": "Custom Date Test Task",
+            "time": ["10:30", "11:30"],
+            "date": "01/10/2021",
+            "body": "www.datpiff.com",
+            "priority": 3
         }
     ]
 }

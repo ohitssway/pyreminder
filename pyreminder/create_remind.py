@@ -1,16 +1,21 @@
+from .constants import PROPERTY_TYPES
 import os
 
 NEW_REMINDER = '''
-osascript - "%s" "%s" "%s"<<END
-on run argv
-set stringedAll to date (item 2 of argv & " " & item 3 of argv)
-tell application "Reminders"
-make new reminder with properties {name:item 1 of argv, due date:stringedAll}
-end tell
-end run
-END
+osascript -e \
+'tell application "Reminders"
+make new reminder with properties {%s}
+end tell'
 '''
 
-def new_reminder(name, date, time):
-    new_reminder_cmd = NEW_REMINDER % (name, date, time)
+def new_reminder(task):
+    property_strings = []
+    for key in task:
+        if PROPERTY_TYPES[key] == "text":
+            property_strings.append('%s:"%s"' % (key, task[key]))
+        elif PROPERTY_TYPES[key] == "date":
+            property_strings.append('%s:date "%s"' % (key, task[key]))
+        else:
+            property_strings.append('%s:%s' % (key, task[key]))
+    new_reminder_cmd = NEW_REMINDER % ', '.join(property_strings)
     os.system(new_reminder_cmd)

@@ -1,4 +1,4 @@
-from .constants import DAYS, DAYS_MAP
+from .constants import DAYS, DAYS_MAP, PROPERTY_TYPES
 from .create_remind import new_reminder
 import os
 import datetime
@@ -39,7 +39,13 @@ def convert_time(task_time):
 
 def _create_reminder(task, task_date): 
     task_time = convert_time(parse_time(task['time']))
-    new_reminder(task['name'], task_date, task_time)
+    task["due date"] = '%s %s' % (task_date, task_time)
+
+    non_property_keys = list(set(task.keys()) - set(PROPERTY_TYPES.keys()))
+    for key in non_property_keys:
+        task.pop(key, None)
+
+    new_reminder(task)
 
 def create_reminder(task):
     if task.get("days"):

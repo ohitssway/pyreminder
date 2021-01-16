@@ -12,3 +12,13 @@ DAYS_MAP = {
         "every other day": EVERY_OTHER_DAY,
         "every other day starting Tuesday": EVERY_OTHER_DAY_STARTING_TUESDAY
 }
+
+PROPERTY_TYPES = {
+        "name": "text",
+        "body": "text",
+        "completed": "boolean",
+        "completion date": "date",
+        "due date": "date",
+        "remind me date": "date",
+        "priority": "integer"
+}

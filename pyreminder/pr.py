@@ -15,7 +15,6 @@ class PyReminders(object):
             The available commands are:
             create_from   Create all reminders from specified json files
             new           New reminder from specified parameters
-            add           Add reminder to specified json file #TODO
             '''
         )
         parser.add_argument('command', help='Subcommand to run')
@@ -48,13 +47,19 @@ class PyReminders(object):
                 required=True)
         parser.add_argument("--days", help="Days to create reminder")
         parser.add_argument("--date", help="Date to create reminder")
+        parser.add_argument("--body", help="Notes attached to reminder")
+        parser.add_argument("--priority", help="Priority of the reminder",
+                type=int, choices=range(1,4))
         args = parser.parse_args(sys.argv[2:])
         
         print("Running pyreminder new:")
         new_reminder_dict = vars(args)
-        for key in new_reminder_dict:
+        keys = list(new_reminder_dict.keys())
+        for key in keys:
             if new_reminder_dict[key]:
                 print("%s : %s" % (key, new_reminder_dict[key]))
+            else:
+                del new_reminder_dict[key]
         create_reminder(new_reminder_dict)
         
 
